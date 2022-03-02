@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { defaultColor, palettePropTypes } from '../../config/theme';
 
 const ButtonEl = styled.button`
-  height: ${({ theme }) => theme.sizes.m + theme.sizes.s}px;
-  width: ${({ theme }) => theme.sizes.xl}px;
+  padding: ${({ theme }) => theme.sizes.s}px;
   background: ${({ theme }) => theme.palette.primary};
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.palette.border};
