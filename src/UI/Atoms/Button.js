@@ -4,7 +4,7 @@ import { defaultColor, palettePropTypes } from '../../config/theme';
 
 const ButtonEl = styled.button`
   padding: ${({ theme }) => theme.sizes.s}px;
-  background: ${({ theme }) => theme.palette.primary};
+  background: ${({ theme, color }) => theme.palette[color]};
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.palette.border};
   text-transform: uppercase;
