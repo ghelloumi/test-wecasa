@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getPrestationsServiceAction } from './redux/main/mainActions';
 import { selectPrestations } from './redux/main/mainSelectors';
+import Button from './UI/Atoms/Button';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,11 @@ const App = () => {
     }
   }, [prestations]);
 
-  return <div className="App">My App</div>;
+  return (
+    <div className="App">
+      My App<Button>Man</Button>
+    </div>
+  );
 };
 
 export default App;
