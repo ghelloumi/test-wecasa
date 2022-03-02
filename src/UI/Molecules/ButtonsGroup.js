@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from '../Atoms/Button';
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.sizes.xs}px;
+`;
 
 const ButtonsGroup = ({ buttons }) => (
   <Container>
