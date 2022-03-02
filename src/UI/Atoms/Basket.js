@@ -6,7 +6,7 @@ const Container = styled.button`
   height: ${({ theme }) => theme.sizes.xl}px;
   width: ${({ theme }) => theme.sizes.xl}px;
   padding: ${({ theme }) => theme.sizes.s}px;
-  background: ${({ theme }) => theme.palette.secondary};
+  background: ${({ theme, disabled }) => theme.palette[disabled ? 'primary' : 'secondary']};
   border-radius: 40%;
   position: fixed;
   right: ${({ theme }) => theme.sizes.m}px;
@@ -30,9 +30,9 @@ const Bullet = styled.div`
 `;
 
 const Basket = ({ itemsCount, onClick }) => (
-  <Container onClick={onClick}>
+  <Container onClick={onClick} disabled={itemsCount === 0}>
     <BasketIcon src={basketIcon} alt="My items basket" />
-    <Bullet>2{itemsCount}</Bullet>
+    {itemsCount > 0 && <Bullet>{itemsCount}</Bullet>}
   </Container>
 );
 
