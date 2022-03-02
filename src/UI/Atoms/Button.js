@@ -17,10 +17,16 @@ const ButtonEl = styled.button`
     background: ${theme.palette.disabled};
     pointer-events: none;
   `}
+
+  ${({ theme, selected }) =>
+    selected &&
+    `
+    background: ${theme.palette.secondary};
+  `}
 `;
 
-const Button = ({ children, handleClick, color, disabled }) => (
-  <ButtonEl onClick={handleClick} color={color} disabled={disabled}>
+const Button = ({ children, handleClick, color, disabled, selected }) => (
+  <ButtonEl onClick={handleClick} color={color} disabled={disabled} selected={selected}>
     {children}
   </ButtonEl>
 );
@@ -29,13 +35,15 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   handleClick: PropTypes.func,
   color: PropTypes.oneOf(palettePropTypes),
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  selected: PropTypes.bool
 };
 
 Button.defaultProps = {
   handleClick: undefined,
   color: defaultColor,
-  disabled: false
+  disabled: false,
+  selected: false
 };
 
 export default Button;
