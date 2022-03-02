@@ -12,17 +12,17 @@ const commonPalette = {
 };
 
 const palette = {
-  light: {
+  theme1: {
     ...commonPalette,
-    primary: '#00B2FF',
+    primary: '#EEEEEE',
     secondary: '#555555',
     info: '#2EB67D',
     warning: '#ECB22E',
     danger: '#E01E5A'
   },
-  dark: {
+  theme2: {
     ...commonPalette,
-    primary: '#555555',
+    primary: '#eeeeee',
     secondary: '#00B2FF',
     info: '#2EB67D',
     warning: '#ECB22E',
