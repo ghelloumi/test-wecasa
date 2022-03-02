@@ -13,7 +13,7 @@ const App = () => {
     }
   }, [prestations]);
 
-  return <div className="App">Hello App</div>;
+  return <div className="App">My App</div>;
 };
 
 export default App;
