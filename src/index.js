@@ -12,7 +12,7 @@ const renderApp = () => {
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <ThemeProvider theme={theme('dark')}>
+        <ThemeProvider theme={theme('theme1')}>
           <App />
         </ThemeProvider>
       </Provider>

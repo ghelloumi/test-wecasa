@@ -7,10 +7,20 @@ const ButtonEl = styled.button`
   width: ${({ theme }) => theme.sizes.xl}px;
   background: ${({ theme }) => theme.palette.primary};
   cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.palette.border};
+  text-transform: uppercase;
+  font-size: 0.6rem;
+
+  ${({ theme, disabled }) =>
+    disabled &&
+    `
+    background: ${theme.palette.disabled};
+    pointer-events: none;
+  `}
 `;
 
-const Button = ({ children, handleClick, color }) => (
-  <ButtonEl onClick={handleClick} color={color}>
+const Button = ({ children, handleClick, color, disabled }) => (
+  <ButtonEl onClick={handleClick} color={color} disabled={disabled}>
     {children}
   </ButtonEl>
 );
@@ -18,12 +28,14 @@ const Button = ({ children, handleClick, color }) => (
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   handleClick: PropTypes.func,
-  color: PropTypes.oneOf(palettePropTypes)
+  color: PropTypes.oneOf(palettePropTypes),
+  disabled: PropTypes.bool
 };
 
 Button.defaultProps = {
   handleClick: undefined,
-  color: defaultColor
+  color: defaultColor,
+  disabled: false
 };
 
 export default Button;
