@@ -37,7 +37,7 @@ const CategoriesTabs = ({ categoriesData }) => {
       <ButtonsGroup buttons={buttonsData} />
       <PrestationsContainer>
         {selectedCategoryData.map((prestation) => (
-          <PrestationCard prestation={prestation} />
+          <PrestationCard key={prestation.reference} prestation={prestation} />
         ))}
       </PrestationsContainer>
     </Container>
