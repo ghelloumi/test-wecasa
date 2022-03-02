@@ -1,9 +1,21 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ButtonsGroup from '../Molecules/ButtonsGroup';
+import PrestationCard from '../Molecules/PrestationCard';
 
-const Container = styled.div``;
-const PrestationsContainer = styled.div``;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const PrestationsContainer = styled.div`
+  margin-top: ${({ theme }) => theme.sizes.m}px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.sizes.s}px;
+`;
 
 const CategoriesTabs = ({ categoriesData }) => {
   const buttonsData = categoriesData.map(
@@ -25,7 +37,7 @@ const CategoriesTabs = ({ categoriesData }) => {
       <ButtonsGroup buttons={buttonsData} />
       <PrestationsContainer>
         {selectedCategoryData.map((prestation) => (
-          <p>{prestation.title}</p>
+          <PrestationCard prestation={prestation} />
         ))}
       </PrestationsContainer>
     </Container>
@@ -46,8 +58,8 @@ CategoriesTabs.propTypes = {
           price: PropTypes.number.isRequired,
           reference: PropTypes.string.isRequired,
           title: PropTypes.string.isRequired
-        })
-      )
+        }).isRequired
+      ).isRequired
     })
   ).isRequired
 };
