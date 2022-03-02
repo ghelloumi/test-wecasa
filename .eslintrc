@@ -28,7 +28,7 @@
 			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
 		],
 		"prettier/prettier": [
-			"error"
+			"warn"
 		],
 		"no-console": "warn",
 		"react/jsx-uses-react": "off",
