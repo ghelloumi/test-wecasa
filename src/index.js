@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
 import App from './App';
 import configureStore from './redux/configureStore';
-import theme from './config/theme';
+import ThemeConfigure from './config/ThemeConfigure';
 
 const renderApp = () => {
   const store = configureStore();
@@ -12,9 +11,9 @@ const renderApp = () => {
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <ThemeProvider theme={theme('theme1')}>
+        <ThemeConfigure>
           <App />
-        </ThemeProvider>
+        </ThemeConfigure>
       </Provider>
     </React.StrictMode>,
     document.getElementById('root')

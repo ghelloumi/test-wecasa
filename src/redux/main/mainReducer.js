@@ -1,6 +1,7 @@
 import { ACTIONS } from './_constants';
 
 const initialState = {
+  theme: process.env.REACT_APP_THEME_1,
   prestations: {
     loading: false,
     error: null,
@@ -10,6 +11,11 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case ACTIONS.SET_THEME:
+      return {
+        ...state,
+        theme: action.payload.theme
+      };
     case ACTIONS.GET_PRESTATIONS_LOADING:
       return {
         ...state,

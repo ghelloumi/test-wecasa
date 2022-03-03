@@ -1,5 +1,11 @@
 import { ACTIONS } from './_constants';
 
+// Themes
+export const setThemeAction = (theme) => ({
+  type: ACTIONS.SET_THEME,
+  payload: { theme }
+});
+
 // Load Prestations
 const getPrestationsLoadingAction = () => ({
   type: ACTIONS.GET_PRESTATIONS_LOADING

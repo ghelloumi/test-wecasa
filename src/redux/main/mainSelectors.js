@@ -1,5 +1,10 @@
 import { useSelector } from 'react-redux';
 
+export const selectTheme = () => {
+  const { theme } = useSelector((data) => data && data.mainReducer);
+  return theme;
+};
+
 export const selectPrestations = () => {
   const {
     data: prestations,
