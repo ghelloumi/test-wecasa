@@ -2,18 +2,21 @@ import { useEffect, useState, useCallback, Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { addItemToBasketAction, removeItemFromBasketAction } from './redux/basket/basketActions';
-import { getPrestationsServiceAction } from './redux/main/mainActions';
-import { convertDurationInHours, convertToEuro, objectIsEmpty } from './Utils';
-import { selectPrestations } from './redux/main/mainSelectors';
-import { selectBasketItems } from './redux/basket/basketSelectors';
+import {
+  addItemToBasketAction,
+  removeItemFromBasketAction
+} from '../../redux/basket/basketActions';
+import { getPrestationsServiceAction } from '../../redux/main/mainActions';
+import { convertDurationInHours, convertToEuro, objectIsEmpty } from '../../Utils';
+import { selectPrestations } from '../../redux/main/mainSelectors';
+import { selectBasketItems } from '../../redux/basket/basketSelectors';
 
-import Basket from './UI/Atoms/Basket';
-import Loader from './UI/Atoms/Loader';
-import Modal from './UI/Molecules/Modal';
-import ElementInBasket from './UI/Molecules/ElementInBasket';
-import Header from './UI/Organisms/Header';
-import CategoriesTabs from './UI/Organisms/CategoriesTabs';
+import Basket from '../Atoms/Basket';
+import Loader from '../Atoms/Loader';
+import Modal from '../Molecules/Modal';
+import ElementInBasket from '../Molecules/ElementInBasket';
+import Header from '../Organisms/Header';
+import CategoriesTabs from '../Organisms/CategoriesTabs';
 
 const MAN_CATEGORY = 'man';
 
