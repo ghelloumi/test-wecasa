@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { convertToEuro, displayDurationInHours } from '../../Utils';
+import { convertToEuro, convertDurationInHours } from '../../Utils';
 import Button from '../Atoms/Button';
 import { addItemToBasketAction } from '../../redux/basket/basketActions';
 
@@ -22,10 +22,10 @@ const ButtonContainer = styled.div`
 
 const PrestationCard = ({ prestation }) => {
   const dispatch = useDispatch();
-  const { duration, price, reference, title } = prestation;
+  const { duration, price, title } = prestation;
 
   const handleAddItem = () => {
-    dispatch(addItemToBasketAction({ reference, title }));
+    dispatch(addItemToBasketAction(prestation));
   };
 
   return (
@@ -41,7 +41,7 @@ const PrestationCard = ({ prestation }) => {
       </p>
       <p>
         Duration:
-        <span> {displayDurationInHours(duration)}</span>
+        <span> {convertDurationInHours(duration)}</span>
       </p>
       <ButtonContainer>
         <Button color="info" handleClick={handleAddItem}>
