@@ -1,7 +1,14 @@
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { setThemeAction } from '../../redux/main/mainActions';
 import { selectTheme } from '../../redux/main/mainSelectors';
 import Button from '../Atoms/Button';
+
+const Container = styled.div`
+  position: absolute;
+  top: ${({ theme }) => theme.sizes.s}px;
+  right: ${({ theme }) => theme.sizes.s}px;
+`;
 
 const ThemeChanger = () => {
   const dispatch = useDispatch();
@@ -16,7 +23,11 @@ const ThemeChanger = () => {
       )
     );
   };
-  return <Button handleClick={handleChangeTheme}>Change Theme</Button>;
+  return (
+    <Container>
+      <Button handleClick={handleChangeTheme}>Change Theme</Button>
+    </Container>
+  );
 };
 
 ThemeChanger.propTypes = {};
