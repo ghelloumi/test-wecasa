@@ -1,4 +1,5 @@
 import { ACTIONS } from './_constants';
+import { getNewId } from '../../Utils';
 
 const initialState = {
   theme: process.env.REACT_APP_THEME_1,
@@ -6,7 +7,8 @@ const initialState = {
     loading: false,
     error: null,
     data: {}
-  }
+  },
+  messages: []
 };
 
 export default (state = initialState, action = {}) => {
@@ -41,6 +43,16 @@ export default (state = initialState, action = {}) => {
           loading: false,
           error: action.payload.error
         }
+      };
+    case ACTIONS.SHOW_MESSAGE_BOX:
+      return {
+        ...state,
+        messages: [...state.messages, { id: getNewId('message'), ...action.payload.data }]
+      };
+    case ACTIONS.REMOVE_MESSAGE_BOX:
+      return {
+        ...state,
+        messages: state.messages.filter((message) => message.id !== action.payload.id)
       };
     default:
       return state;

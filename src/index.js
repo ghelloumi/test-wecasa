@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import configureStore from './redux/configureStore';
 import ThemeConfigure from './config/ThemeConfigure';
+import MessageBoxConfig from './config/MessageBoxConfig';
 
 const renderApp = () => {
   const store = configureStore();
@@ -12,7 +13,9 @@ const renderApp = () => {
     <React.StrictMode>
       <Provider store={store}>
         <ThemeConfigure>
-          <App />
+          <MessageBoxConfig>
+            <App />
+          </MessageBoxConfig>
         </ThemeConfigure>
       </Provider>
     </React.StrictMode>,

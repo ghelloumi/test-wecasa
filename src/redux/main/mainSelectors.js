@@ -14,3 +14,9 @@ export const selectPrestations = () => {
 
   return { prestations, error, loading };
 };
+
+export const selectMessages = () => {
+  const { messages } = useSelector((data) => data && data.mainReducer);
+
+  return messages;
+};
