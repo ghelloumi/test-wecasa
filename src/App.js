@@ -1,28 +1,41 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Fragment } from 'react';
 import { useDispatch } from 'react-redux';
-import { selectPrestations } from './redux/main/mainSelectors';
-import { selectBasketItems } from './redux/basket/basketSelectors';
-import Modal from './UI/Molecules/Modal';
-import Basket from './UI/Atoms/Basket';
-import Title from './UI/Atoms/Title';
-import CategoriesTabs from './UI/Organisms/CategoriesTabs';
+import styled from 'styled-components';
+
 import { addItemToBasketAction, removeItemFromBasketAction } from './redux/basket/basketActions';
-import ElementInBasket from './UI/Molecules/ElementInBasket';
 import { getPrestationsServiceAction } from './redux/main/mainActions';
 import { convertDurationInHours, convertToEuro, objectIsEmpty } from './Utils';
+import { selectPrestations } from './redux/main/mainSelectors';
+import { selectBasketItems } from './redux/basket/basketSelectors';
+
+import Basket from './UI/Atoms/Basket';
+import Loader from './UI/Atoms/Loader';
+import Modal from './UI/Molecules/Modal';
+import ElementInBasket from './UI/Molecules/ElementInBasket';
+import Header from './UI/Organisms/Header';
+import CategoriesTabs from './UI/Organisms/CategoriesTabs';
 
 const MAN_CATEGORY = 'man';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const App = () => {
+  // Hooks
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState(MAN_CATEGORY);
   const [categoriesData, setCategoriesData] = useState([]);
   const [pageTitle, setPageTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Selectors
   const { prestations, error, loading } = selectPrestations();
   const basketItems = selectBasketItems();
 
+  // Effects
   useEffect(() => {
     if (objectIsEmpty(prestations)) {
       dispatch(getPrestationsServiceAction());
@@ -50,6 +63,7 @@ const App = () => {
     }
   }, [prestations, selectedCategory]);
 
+  // Methods
   const handleBasketClick = useCallback(() => {
     setIsModalOpen(true);
   }, []);
@@ -76,30 +90,40 @@ const App = () => {
     0
   );
 
+  if (error) {
+    return <div>Error Loading Data</div>;
+  }
+
   return (
-    <div className="App">
-      {pageTitle && <Title>{pageTitle}</Title>}
-      {categoriesData.length > 0 && <CategoriesTabs categoriesData={categoriesData} />}
-      <Basket itemsCount={basketItems.length} onClick={handleBasketClick} />
-      {isModalOpen && (
-        <Modal
-          title="Mon Panier"
-          closeModal={handleCloseModal}
-          rightFooter={`Total Price: ${convertToEuro(basketItemsTotalPrice)}`}
-          leftFooter={`Total Delay: ${convertDurationInHours(basketItemsTotalDelay)}`}>
-          {basketItems.map((el) => (
-            <ElementInBasket
-              key={el.reference}
-              title={el.title}
-              reference={el.reference}
-              quantity={el.count}
-              addElementHandler={addElementHandler}
-              removeElementHandler={removeElementHandler}
-            />
-          ))}
-        </Modal>
+    <Container>
+      {pageTitle && <Header title={pageTitle} />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <CategoriesTabs categoriesData={categoriesData} />
+          <Basket itemsCount={basketItems.length} onClick={handleBasketClick} />
+          {isModalOpen && (
+            <Modal
+              title="Mon Panier"
+              closeModal={handleCloseModal}
+              rightFooter={`Total Price: ${convertToEuro(basketItemsTotalPrice)}`}
+              leftFooter={`Total Delay: ${convertDurationInHours(basketItemsTotalDelay)}`}>
+              {basketItems.map((el) => (
+                <ElementInBasket
+                  key={el.reference}
+                  title={el.title}
+                  reference={el.reference}
+                  quantity={el.count}
+                  addElementHandler={addElementHandler}
+                  removeElementHandler={removeElementHandler}
+                />
+              ))}
+            </Modal>
+          )}
+        </Fragment>
       )}
-    </div>
+    </Container>
   );
 };
 
