@@ -8,30 +8,29 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const ElementInBasket = ({ name, quantity }) => {
-  const addElementHandler = () => {
-    console.log('add element');
-  };
-
-  const removeElementHandler = () => {
-    console.log('remove element');
-  };
-
-  return (
-    <Container>
-      <p>{name}</p>
-      <ElementsCounter
-        addElementHandler={addElementHandler}
-        removeElementHandler={removeElementHandler}
-        elementsCount={quantity}
-      />
-    </Container>
-  );
-};
+const ElementInBasket = ({
+  title,
+  reference,
+  quantity,
+  addElementHandler,
+  removeElementHandler
+}) => (
+  <Container>
+    <p>{title}</p>
+    <ElementsCounter
+      addElementHandler={() => addElementHandler({ title, reference })}
+      removeElementHandler={() => removeElementHandler(reference)}
+      elementsCount={quantity}
+    />
+  </Container>
+);
 
 ElementInBasket.propTypes = {
-  name: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired
+  title: PropTypes.string.isRequired,
+  reference: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
+  addElementHandler: PropTypes.func.isRequired,
+  removeElementHandler: PropTypes.func.isRequired
 };
 
 export default ElementInBasket;

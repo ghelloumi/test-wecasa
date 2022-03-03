@@ -6,20 +6,22 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
 import mainReducer from './main/mainReducer';
+import basketReducer from './basket/basketReducer';
 
 const enhancer =
   process.env.REACT_APP_ENV === 'local'
     ? composeWithDevTools(applyMiddleware(thunk))
     : applyMiddleware(thunk);
 
-const reducers = combineReducers({
-  mainReducer
-});
-
 const persistConfig = {
   key: 'root',
   storage
 };
+
+const reducers = combineReducers({
+  mainReducer,
+  basketReducer
+});
 
 export default function configureStore(preloadedStore) {
   const persistedReducer = persistReducer(persistConfig, reducers);
