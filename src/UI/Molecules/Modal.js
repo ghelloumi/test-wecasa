@@ -41,6 +41,8 @@ const ModalCloseButton = styled.button`
 
 const ModalContent = styled.div`
   padding: ${({ theme }) => theme.sizes.m}px;
+  height: ${({ theme }) => theme.sizes.xl * 5}px;
+  overflow: auto;
 `;
 
 const ModalFooter = styled.div`
