@@ -14,8 +14,8 @@ const commonPalette = {
 const palette = {
   theme1: {
     ...commonPalette,
-    primary: '#EEEEEE',
-    secondary: '#555555',
+    primary: '#FAFAFA',
+    secondary: '#E4E4E4',
     info: '#2EB67D',
     warning: '#ECB22E',
     danger: '#E01E5A'
