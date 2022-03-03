@@ -90,38 +90,36 @@ const App = () => {
     0
   );
 
-  if (error) {
-    return <div>Error Loading Data</div>;
-  }
-
   return (
     <Container>
       {pageTitle && <Header title={pageTitle} />}
       {loading ? (
         <Loader />
       ) : (
-        <Fragment>
-          <CategoriesTabs categoriesData={categoriesData} />
-          <Basket itemsCount={basketItems.length} onClick={handleBasketClick} />
-          {isModalOpen && (
-            <Modal
-              title="Mon Panier"
-              closeModal={handleCloseModal}
-              rightFooter={`Total Price: ${convertToEuro(basketItemsTotalPrice)}`}
-              leftFooter={`Total Delay: ${convertDurationInHours(basketItemsTotalDelay)}`}>
-              {basketItems.map((el) => (
-                <ElementInBasket
-                  key={el.reference}
-                  title={el.title}
-                  reference={el.reference}
-                  quantity={el.count}
-                  addElementHandler={addElementHandler}
-                  removeElementHandler={removeElementHandler}
-                />
-              ))}
-            </Modal>
-          )}
-        </Fragment>
+        !error && (
+          <Fragment>
+            <CategoriesTabs categoriesData={categoriesData} />
+            <Basket itemsCount={basketItems.length} onClick={handleBasketClick} />
+            {isModalOpen && (
+              <Modal
+                title="Mon Panier"
+                closeModal={handleCloseModal}
+                rightFooter={`Total Price: ${convertToEuro(basketItemsTotalPrice)}`}
+                leftFooter={`Total Delay: ${convertDurationInHours(basketItemsTotalDelay)}`}>
+                {basketItems.map((el) => (
+                  <ElementInBasket
+                    key={el.reference}
+                    title={el.title}
+                    reference={el.reference}
+                    quantity={el.count}
+                    addElementHandler={addElementHandler}
+                    removeElementHandler={removeElementHandler}
+                  />
+                ))}
+              </Modal>
+            )}
+          </Fragment>
+        )
       )}
     </Container>
   );
