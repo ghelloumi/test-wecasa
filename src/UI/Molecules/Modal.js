@@ -43,7 +43,14 @@ const ModalContent = styled.div`
   padding: ${({ theme }) => theme.sizes.m}px;
 `;
 
-const Modal = ({ title, children, closeModal }) => {
+const ModalFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0 ${({ theme }) => theme.sizes.m}px;
+  border-top: 1px solid;
+`;
+
+const Modal = ({ title, children, closeModal, leftFooter, rightFooter }) => {
   const wrapperRef = useRef(null);
   const clickedOutside = useClickOutside(wrapperRef);
 
@@ -60,6 +67,10 @@ const Modal = ({ title, children, closeModal }) => {
         <ModalCloseButton onClick={closeModal}>X</ModalCloseButton>
         <ModalHeader>{title}</ModalHeader>
         <ModalContent>{children}</ModalContent>
+        <ModalFooter>
+          <p>{leftFooter}</p>
+          <p>{rightFooter}</p>
+        </ModalFooter>
       </Container>
     </Fragment>
   );
@@ -68,7 +79,9 @@ const Modal = ({ title, children, closeModal }) => {
 Modal.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  closeModal: PropTypes.func.isRequired
+  closeModal: PropTypes.func.isRequired,
+  leftFooter: PropTypes.string.isRequired,
+  rightFooter: PropTypes.string.isRequired
 };
 
 export default Modal;
