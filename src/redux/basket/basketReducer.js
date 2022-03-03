@@ -5,14 +5,14 @@ const initialState = [];
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case ACTIONS.ADD_ITEM_TO_BASKET: {
-      const { reference, title } = action.payload.item;
+      const { reference, title, duration, price } = action.payload.item;
       const foundElement = state.find((item) => item.reference === reference);
 
       return foundElement
         ? state.map((element) =>
             element.reference === reference ? { ...element, count: element.count + 1 } : element
           )
-        : [...state, { title, reference, count: 1 }];
+        : [...state, { title, reference, duration, price, count: 1 }];
     }
     case ACTIONS.REMOVE_ITEM_FROM_BASKET: {
       const { reference } = action.payload;
